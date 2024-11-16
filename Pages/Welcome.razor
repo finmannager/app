@@ -1,0 +1,155 @@
+@page "/"
+@inject NavigationManager Navigation
+<div class="welcome-page">
+    <div class="content-wrapper text-center">
+        <!-- Logo simbólico -->
+        <img src="logo_192.png" alt="Logo do Aplicativo" class="app-logo" />
+
+        <!-- Apresentação moderna -->
+        <h1 class="app-title">Gerencie Suas Finanças de Forma Inteligente</h1>
+        <p class="app-description">Controle seus gastos e receitas com facilidade, segurança e praticidade.</p>
+        
+        <!-- Botão para continuar -->
+        <button class="btn btn-primary btn-lg mt-4" @onclick="Continue">Começar Agora</button>
+    </div>
+
+   
+</div>
+  <!-- Seção de imagens ilustrativas -->
+        <div class="feature-images mt-5">
+
+             <div class="feature">
+                <img src="img-relatorio.jpg" alt="Relatórios de Receitas" class="feature-image" />
+            </div>
+            <div class="feature">
+                <img src="img-home.jpg" alt="Controle de Gastos" class="feature-image" />
+            </div>
+           
+            <div class="feature">
+                <img src="img-Graf.jpg" alt="Planejamento Financeiro" class="feature-image" />
+            </div>
+        </div>
+<UserCount />
+
+<Testimonial/>
+ <!-- Seção de Perguntas Frequentes -->
+    
+<FaqPage />
+
+
+<!-- Seção de disponibilidade em Android e iOS -->
+        <div class="availability mt-3">
+            <p>Disponível em breve:</p>
+            <div class="icons">
+                <img src="icones-plataforrmas.png" alt="Android" class="platform-icon" />
+                
+            </div>
+        </div>
+<style>
+    /* Fundo da página verde claro */
+    .welcome-page {
+        background-color: #e0f7e9; /* Verde claro */
+        @* height: 80vh; *@
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        color: #333;
+    }
+
+    /* Logo simbólico */
+    .app-logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    /* Estilo do título do aplicativo */
+    .app-title {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2c3e50;
+    }
+
+    /* Descrição do aplicativo */
+    .app-description {
+        font-size: 1.2rem;
+        color: #34495e;
+    }
+
+    /* Botão continuar */
+    button.btn-primary {
+        background-color: #1abc9c;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 25px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    button.btn-primary:hover {
+        background-color: #16a085;
+    }
+
+    /* Seção de disponibilidade para Android e iOS */
+    .availability {
+        margin-top: 15px;
+        font-size: 1rem;
+        color: #34495e;
+    }
+
+    .icons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .platform-icon {
+        width: 140px;
+        height: auto;
+    }
+
+    /* Seção de imagens ilustrativas */
+    .feature-images {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 20px;
+    }
+
+    .feature {
+        text-align: center;
+        max-width: 200px;
+    }
+
+    .feature-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .feature h3 {
+        font-size: 1.1rem;
+        color: #2c3e50;
+        margin-top: 5px;
+    }
+
+    .feature p {
+        font-size: 0.9rem;
+        color: #34495e;
+    }
+</style>
+
+@code {
+    private void Continue()
+    {
+        // Navega para a página de cadastro
+        Navigation.NavigateTo("login");
+    }
+}
