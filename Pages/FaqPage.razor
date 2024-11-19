@@ -6,7 +6,11 @@
     @foreach (var faq in faqs)
     {
         <div class="faq-item">
-            <h3 @onclick="() => ToggleAnswer(faq)">@faq.Question</h3>
+            <h3 @onclick="() => ToggleAnswer(faq)">
+                @faq.Question
+                <i class="@((faq.ShowAnswer ? "bi-dash-circle" : "bi-plus-circle"))" style="margin-right: 10px;"></i>
+                
+            </h3>
             @if (faq.ShowAnswer)
             {
                 <p>@faq.Answer</p>
@@ -14,10 +18,9 @@
         </div>
     }
 
-     <div class="container" style="text-align: center;">
+    <div class="container" style="text-align: center;">
         <img src="site-seguro.png" alt="Descrição da imagem">
-      </div>
-
+    </div>
 </div>
 
 <style>
@@ -41,6 +44,8 @@
 
     h3 {
         cursor: pointer;
+        display: flex;
+        align-items: center;
         background-color: #007bff;
         color: white;
         padding: 10px;
@@ -60,12 +65,15 @@
         border-radius: 5px;
         margin-top: 10px;
     }
+
+    i {
+        font-size: 1.2rem;
+    }
 </style>
 
 @code {
     private List<FaqItem> faqs = new List<FaqItem>
     {
-
         new FaqItem 
         {
             Question = "O app FinManager tem alguma ligação com meu app do banco?",
@@ -77,10 +85,9 @@
             Answer = "Não, para aproveitar o período de teste  de forma gratuita, não será necessário cadastrar seu cartão de crédito. Nenhum dado de pagamento será solicitado durante o período de teste."
         },
         new FaqItem {
-        Question = "Qual a diferença entre a versão gratuita e a paga do app financeiro?",
-        Answer = "A versão gratuita oferece funcionalidades básicas e armazenamento local de dados, Sem sincronização com outros dispositivos, Sem autenticação por senha. A versão paga inclui sincronização em nuvem, acesso multiplataforma (Android, iOS, web) e segurança com autenticação por senha."
+            Question = "Qual a diferença entre a versão gratuita e a paga do app financeiro?",
+            Answer = "A versão gratuita oferece funcionalidades básicas e armazenamento local de dados, Sem sincronização com outros dispositivos, Sem autenticação por senha. A versão paga inclui sincronização em nuvem, acesso multiplataforma (Android, iOS, web) e segurança com autenticação por senha."
         },
-       
         new FaqItem 
         {
             Question = "Quanto custa a assinatura do app-financeiro?",
