@@ -3,7 +3,7 @@ namespace CreditCardApp.Models
     public class CreditCard
 {
     public string CardName { get; set; } //= "Bradesco";
-    public decimal CreditLimit { get; set; } = 0;
+    public decimal CreditLimit { get; set; } // = 0;
     public decimal CurrentBalance { get; set; }
 
     public CreditCard() { }
