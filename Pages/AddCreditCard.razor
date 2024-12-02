@@ -1,4 +1,4 @@
-@page "/add-creditcard" 
+@page "/add-creditcard"
 @using CreditCardApp.Models
 @using Blazored.LocalStorage
 @inject ILocalStorageService LocalStorage
@@ -12,6 +12,12 @@
 {
     <div class="alert alert-success" role="alert">
         Cartão adicionado com sucesso!
+    </div>
+}
+@if (hasError)
+{
+    <div class="alert alert-danger" role="alert">
+        Preencha todos os campos corretamente.
     </div>
 }
 
@@ -30,7 +36,8 @@
 @code {
     private CreditCard newCard = new CreditCard();
     private List<CreditCard> creditCards = new List<CreditCard>();
-    private bool isCardAdded = false; // Variável para controle do alerta
+    private bool isCardAdded = false;  // Variável para controle do alerta de sucesso
+    private bool hasError = false;     // Variável para controle do alerta de erro
 
     protected override async Task OnInitializedAsync()
     {
@@ -43,27 +50,35 @@
 
     private async Task SubmitCreditCard()
     {
+        // Validação: verificar se os campos não estão vazios
+        if (string.IsNullOrWhiteSpace(newCard.CardName) || newCard.CreditLimit <= 0)
+        {
+            hasError = true;  // Exibir mensagem de erro
+            isCardAdded = false; // Ocultar mensagem de sucesso
+            return;
+        }
+
+        hasError = false;  // Ocultar mensagem de erro
+        isCardAdded = true; // Exibir mensagem de sucesso
+
         // Adicionar o novo cartão à lista
         creditCards.Add(newCard);
 
         // Salvar os cartões no LocalStorage
         await LocalStorage.SetItemAsync("creditCards", creditCards);
 
-        // Exibir o alerta de sucesso
-        isCardAdded = true;
-
         // Limpar os campos do formulário
         ClearForm();
 
-        // Atualizar a página após 2 segundos
-        await Task.Delay(2500); 
-        Navigation.NavigateTo(Navigation.Uri, forceLoad: true);
+        // Redirecionar à página anterior após 2 segundos
+        await Task.Delay(2500);
+        Navigation.NavigateTo("/", true); // Redireciona para a página anterior
     }
 
     private void ClearForm()
     {
         // Definir os valores dos campos para seus valores padrão
-        newCard.CardName = string.Empty; // Limpa o nome do cartão
-        newCard.CreditLimit = 0; // Reseta o limite de crédito
+        newCard.CardName = string.Empty;  // Limpa o nome do cartão
+        newCard.CreditLimit = 0;          // Reseta o limite de crédito
     }
 }
