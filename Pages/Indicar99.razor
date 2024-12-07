@@ -35,7 +35,7 @@
 
     <div class="text-center mt-4">
     <!-- Botão para compartilhar o link de indicação no WhatsApp -->
-    <button class="btn btn-success btn-sm rounded-pill align-items-center justify-content-center" @onclick="CompartilharNoWhatsApp">
+    <button class="btn btn-success btn-sm rounded-pill align-items-center justify-content-center" @onclick="CompartilharNoWhatsAppMotorista">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="24" height="24" class="me-2"> <!-- Logo do WhatsApp -->
         <span style="color: white; font-weight: bold;">Convidar para WhatsApp</span>
     </button>
@@ -90,6 +90,19 @@
         // URL do link de indicação - substitua pelo seu link de convite pessoal
         var linkIndicacao = "https://d.99app.com/velNhPB?resource_id=12";
         var mensagem = $"Ganhe até R$15 em cupons de corrida da 99!Oi, Use meu link para se cadastrar na 99Pay e aproveite! É super rápido e fácil!: {linkIndicacao}";
+
+        // URL para compartilhar via WhatsApp
+        var urlWhatsApp = $"https://wa.me/?text={Uri.EscapeDataString(mensagem)}";
+        
+        // Abre o link de compartilhamento do WhatsApp em uma nova aba do navegador
+        JS.InvokeVoidAsync("window.open", urlWhatsApp, "_blank");
+    }
+
+ private void CompartilharNoWhatsAppMotorista()
+    {
+        // URL do link de indicação - substitua pelo seu link de convite pessoal
+        var linkIndicacao = "https://d.99app.com/lFdEtvo";
+        var mensagem = $"Voce foi convidado para ser motorista parceiro 99! Chega junto com a 99 para aumentar os seus ganhos. Cadastre-se agora!: {linkIndicacao}";
 
         // URL para compartilhar via WhatsApp
         var urlWhatsApp = $"https://wa.me/?text={Uri.EscapeDataString(mensagem)}";
